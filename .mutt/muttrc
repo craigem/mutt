@@ -53,7 +53,7 @@
 # set metoo = no
 # set post_indent_string = '(empty)'
 # set postpone = ask-yes
-# set postponed = '~/postponed'
+set postponed = '+.Drafts'
 # set recall = ask-yes
 # set reply_regexp = '^(re([\[0-9\]+])*|aw):[ \t]*'
 # set sig_dashes = yes
@@ -173,10 +173,10 @@ set from = 'craige@mcwhirter.io'
 # set maildir_header_cache_verify = yes
 # set maildir_trash = no
 # set mark_old = yes
-# set mbox = '~/mbox'
-# set mbox_type = 'mbox'
+set mbox = '~/Mail'
+set mbox_type = 'Maildir'
 # set save_empty = yes
-# set spoolfile = '(empty)'
+set spoolfile = '~/Mail'
 
 ##########
 # imap
@@ -329,7 +329,7 @@ set from = 'craige@mcwhirter.io'
 # set mime_forward_rest = yes
 # set mix_entry_format = '%4n %c %-16s %a'
 # set mixmaster = '1'
-# set record = '~/sent'
+set record = '+.Sent'
 # set send_charset = 'us-ascii:iso-8859-1:utf-8'
 # set sendmail = '/usr/sbin/sendmail -oem -oi'
 # set sendmail_wait = '0'
@@ -405,7 +405,7 @@ set from = 'craige@mcwhirter.io'
 # set history = '10'
 # set locale = 'C'
 # set mailcap_sanitize = yes
-# set mask = '!^\.[^.]'
+set mask = '!^\.[^.]'
 # set message_cachedir = '(empty)'
 # set meta_key = no
 # set pipe_decode = no
