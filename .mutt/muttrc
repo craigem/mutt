@@ -421,3 +421,12 @@ set mask = '!^\.[^.]'
 # set tmpdir = '(empty)'
 
 # Colors
+
+#########
+# Macros
+#########
+
+# Scan all sub folders in ~/Maildir for mailboxes:
+mailboxes `echo -n "+ "; find ~/Mail -maxdepth 1 -type d -name ".*" -printf "+'%f' "`
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
