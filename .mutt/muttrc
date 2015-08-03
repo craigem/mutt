@@ -53,7 +53,7 @@
 # set metoo = no
 # set post_indent_string = '(empty)'
 # set postpone = ask-yes
-set postponed = '+.Drafts'
+set postponed = '=Drafts'
 # set recall = ask-yes
 # set reply_regexp = '^(re([\[0-9\]+])*|aw):[ \t]*'
 # set sig_dashes = yes
@@ -114,7 +114,7 @@ set postponed = '+.Drafts'
 # set text_flowed = no
 # set thorough_search = yes
 # set time_inc = '0'
-# set timeout = '600'
+set timeout = '600'
 # set to_chars = ' +TCFL'
 # set wrap = '0'
 # set wrap_headers = '78'
@@ -157,7 +157,7 @@ set postponed = '+.Drafts'
 ############
 
 set alias_file = '~/.muttrc'
-set folder = '~/Mail'
+set folder = 'imaps://mcwhirter.com.au'
 set from = 'craige@mcwhirter.io'
 
 ##########
@@ -169,21 +169,22 @@ set from = 'craige@mcwhirter.io'
 # set delete_untag = yes
 # set folder_format = '%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f'
 # set keep_flagged = no
-# set mail_check = '5'
+set mail_check = '60'
 # set maildir_header_cache_verify = yes
 # set maildir_trash = no
 # set mark_old = yes
 set mbox = '~/Mail'
 set mbox_type = 'Maildir'
 # set save_empty = yes
-set spoolfile = '~/Mail'
+set spoolfile = 'imaps://craige@mcwhirter.com.au/INBOX'
+set trash = "=Trash"
 
 ##########
 # imap
 ##########
 
 # set imap_authenticators = '(empty)'
-# set imap_check_subscribed = no
+set imap_check_subscribed = yes
 # set imap_delim_chars = '/.'
 # set imap_headers = '(empty)'
 # set imap_idle = no
@@ -191,7 +192,7 @@ set spoolfile = '~/Mail'
 # set imap_list_subscribed = no
 # set imap_login = '(empty)'
 # set imap_pass = '(empty)'
-# set imap_passive = yes
+set imap_passive = no
 # set imap_peek = yes
 # set imap_servernoise = yes
 # set imap_user = '(empty)'
@@ -210,7 +211,7 @@ set spoolfile = '~/Mail'
 ##########
 
 # set connect_timeout = '30'
-# set net_inc = '10'
+set net_inc = '5'
 # set preconnect = '(empty)'
 # set tunnel = '(empty)'
 # set use_ipv6 = yes
@@ -224,7 +225,7 @@ set spoolfile = '~/Mail'
 # Patches
 ##########
 
-# set history_file = '~/.mutthistory'
+set history_file = '~/.mutt/history'
 # set save_history = '0'
 # set smtp_authenticators = '(empty)'
 # set smtp_url = '(empty)'
@@ -329,7 +330,7 @@ set spoolfile = '~/Mail'
 # set mime_forward_rest = yes
 # set mix_entry_format = '%4n %c %-16s %a'
 # set mixmaster = '1'
-set record = '+.Sent'
+set record = '=Sent'
 # set send_charset = 'us-ascii:iso-8859-1:utf-8'
 # set sendmail = '/usr/sbin/sendmail -oem -oi'
 # set sendmail_wait = '0'
@@ -378,13 +379,13 @@ set record = '+.Sent'
 # SSL
 ##########
 
-# set certificate_file = '~/.mutt_certificates'
+set certificate_file = '~/.mutt/certificates'
 # set entropy_file = '(empty)'
 # set ssl_ca_certificates_file = '(empty)'
 # set ssl_client_cert = '(empty)'
-# set ssl_force_tls = no
+set ssl_force_tls = yes
 # set ssl_min_dh_prime_bits = '0'
-# set ssl_starttls = yes
+set ssl_starttls = yes
 # set ssl_use_sslv2 = no
 # set ssl_use_sslv3 = yes
 # set ssl_use_tlsv1 = yes
@@ -399,7 +400,7 @@ set record = '+.Sent'
 # set default_hook = '~f %s !~P | (~P ~C %s)'
 # set dotlock_program = '/usr/local/bin/mutt_dotlock'
 # set gecos_mask = '^[^,]*'
-# set header_cache = '(empty)'
+set header_cache = '~/.mutt/hcache'
 # set header_cache_compress = yes
 # set header_cache_pagesize = '16384'
 # set history = '10'
