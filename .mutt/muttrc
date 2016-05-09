@@ -39,7 +39,7 @@
 # set forward_decode = yes
 # set forward_decrypt = yes
 # set forward_edit = yes
-# set forward_format = '[%a: %s]'
+set forward_format = '[FWD:] %s'
 # set forward_quote = no
 # set hdrs = yes
 # set header = no
@@ -53,7 +53,7 @@
 # set metoo = no
 # set post_indent_string = '(empty)'
 # set postpone = ask-yes
-set postponed = '=Drafts'
+# set postponed = '=Drafts'
 # set recall = ask-yes
 # set reply_regexp = '^(re([\[0-9\]+])*|aw):[ \t]*'
 # set sig_dashes = yes
@@ -64,16 +64,16 @@ set postponed = '=Drafts'
 # Crypto
 ##########
 
-# set crypt_autoencrypt = no
-# set crypt_autopgp = yes
-# set crypt_autosign = no
+# set crypt_autoencrypt = yes
+set crypt_autopgp = yes
+set crypt_autosign = yes
 # set crypt_autosmime = yes
-# set crypt_replyencrypt = yes
+set crypt_replyencrypt = yes
 # set crypt_replysign = no
 # set crypt_replysignencrypted = no
 # set crypt_timestamp = yes
-# set crypt_use_gpgme = no
-# set crypt_verify_sig = yes
+set crypt_use_gpgme = yes
+set crypt_verify_sig = yes
 
 ##########
 # Default
@@ -84,11 +84,12 @@ set postponed = '=Drafts'
 # set crypt_use_pka = no
 # set honor_disposition = no
 # set ignore_linear_white_space = no
-# set imap_pipeline_depth = '15'
+# set imap_pipeline_depth = '16'
 # set mail_check_recent = yes
 # set message_cache_clean = no
 # set prompt_after = yes
 # set query_command = '(empty)'
+set query_command = "/usr/bin/pc_query -m '%s'"
 # set query_format = '%4c %t %-25.25a %-25.25n %?e?(%e)?'
 # set quote_regexp = '^([ \t]*[|>:}#])+'
 # set read_inc = '10'
@@ -144,6 +145,11 @@ set timeout = '600'
 # set use_idn = yes
 # set wait_key = yes
 # set write_inc = '10'
+# Auto view HTML email as per ~/.mailcap
+auto_view = text/html
+# Browse the URLs in an email message from a terminal
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 
 ##########
 # Editor
@@ -156,9 +162,9 @@ set timeout = '600'
 # Essential
 ############
 
-set alias_file = '~/.muttrc'
-set folder = 'imaps://mcwhirter.com.au'
-set from = 'craige@mcwhirter.io'
+set alias_file = '~/.mutt/muttrc'
+# set folder = '~/Mail/MCA'
+# set from = 'craige@mcwhirter.com.au'
 
 ##########
 # Folders
@@ -169,22 +175,21 @@ set from = 'craige@mcwhirter.io'
 # set delete_untag = yes
 # set folder_format = '%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f'
 # set keep_flagged = no
-set mail_check = '60'
+set mail_check = '5'
 # set maildir_header_cache_verify = yes
 # set maildir_trash = no
 # set mark_old = yes
-set mbox = '~/Mail'
-set mbox_type = 'Maildir'
+# set mbox = '~/Mail/MCA'
+# set mbox_type = 'Maildir'
 # set save_empty = yes
-set spoolfile = 'imaps://craige@mcwhirter.com.au/INBOX'
-set trash = "=Trash"
+# set spoolfile = '~/Mail/MCA/INBOX.Sent/'
 
 ##########
 # imap
 ##########
 
 # set imap_authenticators = '(empty)'
-set imap_check_subscribed = yes
+# set imap_check_subscribed = yes
 # set imap_delim_chars = '/.'
 # set imap_headers = '(empty)'
 # set imap_idle = no
@@ -192,7 +197,7 @@ set imap_check_subscribed = yes
 # set imap_list_subscribed = no
 # set imap_login = '(empty)'
 # set imap_pass = '(empty)'
-set imap_passive = no
+# set imap_passive = no
 # set imap_peek = yes
 # set imap_servernoise = yes
 # set imap_user = '(empty)'
@@ -234,35 +239,35 @@ set history_file = '~/.mutt/history'
 # PGP
 ##########
 
-# set pgp_auto_decode = no
-# set pgp_autoinline = no
-# set pgp_check_exit = yes
-# set pgp_clearsign_command = '(empty)'
-# set pgp_decode_command = '(empty)'
-# set pgp_decrypt_command = '(empty)'
-# set pgp_encrypt_only_command = '(empty)'
-# set pgp_encrypt_sign_command = '(empty)'
+set pgp_auto_decode = no
+set pgp_autoinline = no
+set pgp_check_exit = yes
+# set pgp_clearsign_command = '/usr/bin/gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f'
+# set pgp_decode_command = '/usr/bin/gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f'
+# set pgp_decrypt_command = '/usr/bin/gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f'
+# set pgp_encrypt_only_command = '/usr/lib/mutt/pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f'
+# set pgp_encrypt_sign_command = '/usr/lib/mutt/pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f'
 # set pgp_entry_format = '%4n %t%f %4l/0x%k %-4a %2c %u'
-# set pgp_export_command = '(empty)'
+set pgp_export_command = '/usr/bin/gpg --no-verbose --export --armor %r'
 # set pgp_getkeys_command = '(empty)'
 # set pgp_good_sign = '(empty)'
 # set pgp_ignore_subkeys = yes
-# set pgp_import_command = '(empty)'
-# set pgp_list_pubring_command = '(empty)'
-# set pgp_list_secring_command = '(empty)'
+set pgp_import_command = '/usr/bin/gpg --no-verbose --import %f'
+set pgp_list_pubring_command = '/usr/bin/gpg --no-verbose --batch --quiet --with-colons --with-fingerprint --with-fingerprint --list-keys %r'
+set pgp_list_secring_command = '/usr/bin/gpg --no-verbose --batch --quiet --with-colons --with-fingerprint --with-fingerprint --list-secret-keys %r'
 # set pgp_long_ids = no
 # set pgp_mime_auto = ask-yes
 # set pgp_replyinline = no
 # set pgp_retainable_sigs = no
 # set pgp_show_unusable = yes
-# set pgp_sign_as = '(empty)'
-# set pgp_sign_command = '(empty)'
+set pgp_sign_as = '04CE4b93'
+# set pgp_sign_command = '/usr/bin/gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f'
 # set pgp_sort_keys = 'address'
 # set pgp_strict_enc = yes
-# set pgp_timeout = '300'
-# set pgp_use_gpg_agent = no
-# set pgp_verify_command = '(empty)'
-# set pgp_verify_key_command = '(empty)'
+set pgp_timeout = '3600'
+set pgp_use_gpg_agent = yes
+# set pgp_verify_command = '/usr/bin/gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f'
+# set pgp_verify_key_command = '/usr/bin/gpg --verbose --batch --fingerprint --check-sigs %r'
 
 ##########
 # pop3
@@ -330,7 +335,7 @@ set history_file = '~/.mutt/history'
 # set mime_forward_rest = yes
 # set mix_entry_format = '%4n %c %-16s %a'
 # set mixmaster = '1'
-set record = '=Sent'
+#set record = '=Sent'
 # set send_charset = 'us-ascii:iso-8859-1:utf-8'
 # set sendmail = '/usr/sbin/sendmail -oem -oi'
 # set sendmail_wait = '0'
@@ -400,20 +405,20 @@ set ssl_starttls = yes
 # set default_hook = '~f %s !~P | (~P ~C %s)'
 # set dotlock_program = '/usr/local/bin/mutt_dotlock'
 # set gecos_mask = '^[^,]*'
-set header_cache = '~/.mutt/hcache'
+set header_cache = '~/Mail'
 # set header_cache_compress = yes
 # set header_cache_pagesize = '16384'
 # set history = '10'
 # set locale = 'C'
 # set mailcap_sanitize = yes
 set mask = '!^\.[^.]'
-# set message_cachedir = '(empty)'
+set message_cachedir = '~/Mail'
 # set meta_key = no
 # set pipe_decode = no
 # set pipe_sep = '\n'
 # set pipe_split = no
-# set print = ask-no
-# set print_command = 'lpr'
+set print = ask-no
+set print_command = 'muttprint -P A4 -p TO_FILE:- | ps2pdf - /tmp/$USER.pdf'
 # set print_decode = yes
 # set print_split = no
 # set quit = yes
@@ -431,3 +436,17 @@ set mask = '!^\.[^.]'
 mailboxes `echo -n "+ "; find ~/Mail -maxdepth 1 -type d -name ".*" -printf "+'%f' "`
 macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
+macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
+
+source ~/.mutt/profile.MCA
+macro index <f2> '<enter-command>source ~/.mutt/profile.MCA<enter><change-folder>!<enter>'
+macro index <f3> '<enter-command>source ~/.mutt/profile.HPE<enter><change-folder>!<enter>'
+
+# use tab to switch between accounts, inspired by
+#  http://msmtp.sourceforge.net/doc/msmtp.html#Using-msmtp-with-Mutt
+macro generic \Cx| "<enter-command>source"
+macro generic \Cx& "<enter-command>macro index \\t \"\\Cx"
+macro index <tab> "\Cx0"    # default change to account 1, this will be redefined once pressed
+macro generic \Cx0 "\Cx| ~/.mutt/profile.MCA\"\n\Cx&1\"<enter><change-folder>!<enter>"
+macro generic \Cx1 "\Cx| ~/.mutt/profile.HPE\"\n\Cx&0\"<enter><change-folder>!<enter>"
