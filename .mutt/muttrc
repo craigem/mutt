@@ -417,7 +417,7 @@ set message_cachedir = '~/Mail'
 # set pipe_decode = no
 # set pipe_sep = '\n'
 # set pipe_split = no
-set print = ask-no
+set print = ask-yes
 set print_command = 'muttprint -P A4 -p TO_FILE:- | ps2pdf - /tmp/$USER.pdf'
 # set print_decode = yes
 # set print_split = no
@@ -427,6 +427,7 @@ set print_command = 'muttprint -P A4 -p TO_FILE:- | ps2pdf - /tmp/$USER.pdf'
 # set tmpdir = '(empty)'
 
 # Colors
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 
 #########
 # Macros
@@ -450,3 +451,36 @@ macro generic \Cx& "<enter-command>macro index \\t \"\\Cx"
 macro index <tab> "\Cx0"    # default change to account 1, this will be redefined once pressed
 macro generic \Cx0 "\Cx| ~/.mutt/profile.MCA\"\n\Cx&1\"<enter><change-folder>!<enter>"
 macro generic \Cx1 "\Cx| ~/.mutt/profile.HPE\"\n\Cx&0\"<enter><change-folder>!<enter>"
+
+#######################
+# Sidebar configuration
+#######################
+
+# set up the sidebar, default not visible
+set sidebar_width       = 40
+set sidebar_visible     = yes
+set sidebar_sort_method = path
+set mail_check_stats
+set sidebar_format      = '%B%?F? [%F]?%* %?N?%N/?%S'
+
+# which mailboxes to list in the sidebar
+mailboxes =Inbox =INBOX.Linux.LA =INBOX.Linux.LA.Committee =INBOX.OpenStack.dev =INBOX.OpenStack.Infra =INBOX.Linux.CQLUG =INBOX.Linux.TasLUG
+
+# color of folders with new mail
+color sidebar_new yellow default
+
+# ctrl-n, ctrl-p to select next, prev folder
+# ctrl-o to open selected folder
+bind index CP sidebar-prev
+bind index CN sidebar-next
+bind index CO sidebar-open
+bind pager CP sidebar-prev
+bind pager CN sidebar-next
+bind pager CO sidebar-open
+
+# b toggles sidebar visibility
+macro index b ‘<enter-command>toggle sidebar_visible<enter>’
+macro pager b ‘<enter-command>toggle sidebar_visible<enter>’
+
+# Remap bounce-message function to “B”
+bind index B bounce-message
