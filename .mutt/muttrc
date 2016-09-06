@@ -464,7 +464,7 @@ set mail_check_stats
 set sidebar_format      = '%B%?F? [%F]?%* %?N?%N/?%S'
 
 # which mailboxes to list in the sidebar
-mailboxes =Inbox =INBOX.Linux.LA =INBOX.Linux.LA.Committee =INBOX.OpenStack.dev =INBOX.OpenStack.Infra =INBOX.Linux.CQLUG =INBOX.Linux.TasLUG
+mailboxes =Inbox =INBOX.Linux.LA =INBOX.Linux.LA.Committee =INBOX.OpenStack.dev =INBOX.OpenStack.Infra =INBOX.Linux.CQLUG =INBOX.Linux.TasLUG =INBOX.OpenStack.openstack =INBOX.OpenStack.review.infra =INBOX.OpenStack.review.governance =INBOX.OpenStack.security =INBOX.Linux.Programming.FP-Syd =INBOX.Linux.LA.Announce
 
 # color of folders with new mail
 color sidebar_new yellow default
