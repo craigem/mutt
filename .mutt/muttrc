@@ -434,7 +434,7 @@ source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 #########
 
 # Scan all sub folders in ~/Maildir for mailboxes:
-mailboxes `echo -n "+ "; find ~/Mail -maxdepth 1 -type d -name ".*" -printf "+'%f' "`
+mailboxes `echo -n "+ "; find ~/Mail -maxdepth 2 -type d -name ".*" -printf "+'%f' "`
 macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
@@ -442,7 +442,7 @@ macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 
 source ~/.mutt/profile.MCA
 macro index <f2> '<enter-command>source ~/.mutt/profile.MCA<enter><change-folder>!<enter>'
-macro index <f3> '<enter-command>source ~/.mutt/profile.HPE<enter><change-folder>!<enter>'
+macro index <f3> '<enter-command>source ~/.mutt/profile.EXO1<enter><change-folder>!<enter>'
 
 # use tab to switch between accounts, inspired by
 #  http://msmtp.sourceforge.net/doc/msmtp.html#Using-msmtp-with-Mutt
@@ -450,7 +450,7 @@ macro generic \Cx| "<enter-command>source"
 macro generic \Cx& "<enter-command>macro index \\t \"\\Cx"
 macro index <tab> "\Cx0"    # default change to account 1, this will be redefined once pressed
 macro generic \Cx0 "\Cx| ~/.mutt/profile.MCA\"\n\Cx&1\"<enter><change-folder>!<enter>"
-macro generic \Cx1 "\Cx| ~/.mutt/profile.HPE\"\n\Cx&0\"<enter><change-folder>!<enter>"
+macro generic \Cx1 "\Cx| ~/.mutt/profile.EXO1\"\n\Cx&0\"<enter><change-folder>!<enter>"
 
 #######################
 # Sidebar configuration
@@ -464,7 +464,7 @@ set mail_check_stats
 set sidebar_format      = '%B%?F? [%F]?%* %?N?%N/?%S'
 
 # which mailboxes to list in the sidebar
-mailboxes =Inbox =INBOX.Linux.LA =INBOX.Linux.LA.Committee =INBOX.OpenStack.dev =INBOX.OpenStack.Infra =INBOX.Linux.CQLUG =INBOX.Linux.TasLUG =INBOX.OpenStack.openstack =INBOX.OpenStack.review.infra =INBOX.OpenStack.review.governance =INBOX.OpenStack.security =INBOX.Linux.Programming.FP-Syd =INBOX.Linux.LA.Announce =INBOX.Linux.Debian.Jobs
+mailboxes =Inbox =INBOX.Linux.LA =INBOX.Linux.LA.Committee =INBOX.OpenStack.dev =INBOX.OpenStack.Infra =INBOX.Linux.CQLUG =INBOX.Linux.TasLUG =INBOX.OpenStack.openstack =INBOX.OpenStack.review.infra =INBOX.OpenStack.review.governance =INBOX.OpenStack.security =INBOX.Linux.Programming.FP-Syd =INBOX.Linux.LA.Announce =INBOX.Linux.Debian.Jobs =INBOX.Linux.Debian.Devel =INBOX.Linux.Debian.Devel.Announce =INBOX.Linux.Debian.Announce =INBOX.Linux.Debian.Au =INBOX.Linux.Debian.Mentors =INBOX.Linux.Debian.News =INBOX.Linux.Debian.Security =INBOX.Linux.LA.Press =INBOX.Linux.LA.Polcies =INBOX.Linux.OSIA.Members =INBOX.Linux.OSIA.Announce =INBOX.Linux.OSIA.Discuss =INBOX.Personal.ATA
 
 
 # color of folders with new mail
