@@ -248,25 +248,23 @@ set pgp_check_exit = yes
 # set pgp_encrypt_only_command = '/usr/lib/mutt/pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f'
 # set pgp_encrypt_sign_command = '/usr/lib/mutt/pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f'
 # set pgp_entry_format = '%4n %t%f %4l/0x%k %-4a %2c %u'
-set pgp_export_command = '/usr/bin/gpg --no-verbose --export --armor %r'
+set pgp_export_command = '/run/current-system/sw/bin/gpg --no-verbose --export --armor %r'
 # set pgp_getkeys_command = '(empty)'
 # set pgp_good_sign = '(empty)'
 # set pgp_ignore_subkeys = yes
-set pgp_import_command = '/usr/bin/gpg --no-verbose --import %f'
-set pgp_list_pubring_command = '/usr/bin/gpg --no-verbose --batch --quiet --with-colons --with-fingerprint --with-fingerprint --list-keys %r'
-set pgp_list_secring_command = '/usr/bin/gpg --no-verbose --batch --quiet --with-colons --with-fingerprint --with-fingerprint --list-secret-keys %r'
+set pgp_import_command = '/run/current-system/sw/bin/gpg --no-verbose --import %f'
+set pgp_list_pubring_command = '/run/current-system/sw/bin/gpg --no-verbose --batch --quiet --with-colons --with-fingerprint --with-fingerprint --list-keys %r'
+set pgp_list_secring_command = '/run/current-system/sw/bin/gpg --no-verbose --batch --quiet --with-colons --with-fingerprint --with-fingerprint --list-secret-keys %r'
 # set pgp_long_ids = no
 # set pgp_mime_auto = ask-yes
 # set pgp_replyinline = no
 # set pgp_retainable_sigs = no
-# set pgp_show_unusable = yes
-set pgp_sign_as = '04CE4b93'
 # set pgp_sign_command = '/usr/bin/gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f'
 # set pgp_sort_keys = 'address'
 # set pgp_strict_enc = yes
 set pgp_timeout = '3600'
 set pgp_use_gpg_agent = yes
-# set pgp_verify_command = '/usr/bin/gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f'
+set pgp_verify_command = '/run/current-system/sw/bin/gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f'
 # set pgp_verify_key_command = '/usr/bin/gpg --verbose --batch --fingerprint --check-sigs %r'
 
 ##########
@@ -433,8 +431,8 @@ source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 # Macros
 #########
 
-# Scan all sub folders in ~/Maildir for mailboxes:
-mailboxes `echo -n "+ "; find ~/Mail -maxdepth 2 -type d -name ".*" -printf "+'%f' "`
+# Scan all sub folders in ~/Mail/MCA for mailboxes:
+#mailboxes `echo -n "+ "; find ~/Mail/MCA -maxdepth 2 -type d -name ".*" -printf "+'%f' "`
 macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
@@ -442,7 +440,7 @@ macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 
 source ~/.mutt/profile.MCA
 macro index <f2> '<enter-command>source ~/.mutt/profile.MCA<enter><change-folder>!<enter>'
-macro index <f3> '<enter-command>source ~/.mutt/profile.EXO1<enter><change-folder>!<enter>'
+macro index <f3> '<enter-command>source ~/.mutt/profile.Canonical<enter><change-folder>!<enter>'
 
 # use tab to switch between accounts, inspired by
 #  http://msmtp.sourceforge.net/doc/msmtp.html#Using-msmtp-with-Mutt
@@ -450,7 +448,7 @@ macro generic \Cx| "<enter-command>source"
 macro generic \Cx& "<enter-command>macro index \\t \"\\Cx"
 macro index <tab> "\Cx0"    # default change to account 1, this will be redefined once pressed
 macro generic \Cx0 "\Cx| ~/.mutt/profile.MCA\"\n\Cx&1\"<enter><change-folder>!<enter>"
-macro generic \Cx1 "\Cx| ~/.mutt/profile.EXO1\"\n\Cx&0\"<enter><change-folder>!<enter>"
+macro generic \Cx1 "\Cx| ~/.mutt/profile.Canonical\"\n\Cx&0\"<enter><change-folder>!<enter>"
 
 #######################
 # Sidebar configuration
@@ -462,10 +460,6 @@ set sidebar_visible     = yes
 set sidebar_sort_method = path
 set mail_check_stats
 set sidebar_format      = '%B%?F? [%F]?%* %?N?%N/?%S'
-
-# which mailboxes to list in the sidebar
-mailboxes =Inbox =INBOX.Linux.LA =INBOX.Linux.LA.Committee =INBOX.OpenStack.dev =INBOX.OpenStack.Infra =INBOX.Linux.CQLUG =INBOX.Linux.TasLUG =INBOX.OpenStack.openstack =INBOX.OpenStack.review.infra =INBOX.OpenStack.review.governance =INBOX.OpenStack.security =INBOX.Linux.Programming.FP-Syd =INBOX.Linux.LA.Announce =INBOX.Linux.Debian.Jobs =INBOX.Linux.Debian.Devel =INBOX.Linux.Debian.Devel.Announce =INBOX.Linux.Debian.Announce =INBOX.Linux.Debian.Au =INBOX.Linux.Debian.Mentors =INBOX.Linux.Debian.News =INBOX.Linux.Debian.Security =INBOX.Linux.LA.Press =INBOX.Linux.LA.Polcies =INBOX.Linux.OSIA.Members =INBOX.Linux.OSIA.Announce =INBOX.Linux.OSIA.Discuss =INBOX.Personal.ATA
-
 
 # color of folders with new mail
 color sidebar_new yellow default
