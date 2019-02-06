@@ -374,7 +374,8 @@ set date_format = '!%a, %b %d, %Y at %H:%M:%S %Z'
 
 # set sort = 'date'
 # set sort_alias = 'alias'
-# set sort_aux = 'date'
+set sort = threads
+set sort_aux = 'date'
 # set sort_browser = 'alpha'
 # set sort_re = yes
 
